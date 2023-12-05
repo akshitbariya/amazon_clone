@@ -6,6 +6,7 @@ import FormattedPrice from './FormattedPrice';
 import { useDispatch } from 'react-redux';
 import { addToCart, addToFavourite } from '@/Store/nextSlice';
 import { ProductProps } from '@/type';
+import Link from 'next/link';
 const Product = ({ productData }: any) => {
   const dispatch = useDispatch();
   return (
@@ -27,15 +28,31 @@ const Product = ({ productData }: any) => {
             className=" w-full bg-white  text-black p-4 border border-gray-300
           rounded-lg group  overflow-hidden "
           >
-            <div className=" w-full h-[260px relative ">
+            <div className=" w-full h-[260px relative cursor-pointer ">
+              <  Link href={{pathname: `/${_id}`,
+            query:{
+              _id: _id,
+              brand: brand,
+              catagory: catagory,
+              image: image,
+              description: description,
+              isNew: isNew,
+              oldPrice: oldPrice,
+              price: price,
+              title: title,
+              quantity: 1,
+            }
+            }} >
+              
               <Image
                 className=" w-full h-full object-cover 
-              scale-90 hover:scale-100  transition-transform duration-300 "
+                scale-90 hover:scale-100  transition-transform duration-300 "
                 width={300}
                 height={300}
                 src={image}
                 alt="productImage"
-              />
+                />
+                </Link>
               <div
                 className=" w-12 h-24 absolute bottom-10 right-0 border-[1px]
                   border-gray-400 bg-white rounded-md flex flex-col translate-x-20 group-hover:translate-x-0 transition-transform  duration-300 "
@@ -76,11 +93,11 @@ const Product = ({ productData }: any) => {
                         title: title,
                         quantity: 1,
                       })
-                    )}
-
-                  className=" w-full h-full border-b-[1px]  border-gray-400 flex items-center justify-center  text-xl
-                 bg-transparent hover:bg-amazon_yellow cursor-pointer duration-300"
-                >
+                      )}
+                      
+                      className=" w-full h-full border-b-[1px]  border-gray-400 flex items-center justify-center  text-xl
+                      bg-transparent hover:bg-amazon_yellow cursor-pointer duration-300"
+                      >
                   <FaHeart />
                 </span>
               </div>
